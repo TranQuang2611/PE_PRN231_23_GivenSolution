@@ -1,0 +1,55 @@
+﻿@using Q2.DTO;
+@model List<MovieDTO>
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    List<AuthorDTO> authors = (List<AuthorDTO>)ViewBag.authors;
+    List<StudioDTO> studios = (List<StudioDTO>)ViewBag.studios;
+}
+
+<div>
+    <div style="float:left">
+        <h2>Authors</h2>
+        @foreach (var item in studios)
+        {
+            <a href="/Movie/Index?id=@item.StudioId">@item.StudioName</a>
+            <br />
+        } 
+    </div>
+    <div style="float:right; padding-right:1000px">
+        <h2>Add new movie</h2>
+        MovieId <input name=""/>
+        <br />
+        MovieTitle <input name=""/>
+        <br />
+        Studio <select>
+            @foreach (var item in studios)
+            {
+                <option>@item.StudioName</option>
+            }
+        </select>
+        <br />
+        <button>Add new</button>
+        <br />
+        <h2>
+            List of movies
+        </h2>
+        <br />
+        <table>
+            <thead>
+                <tr>MovieId</tr>
+                <tr>Title</tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.MovieId</td>
+                        <td>@item.Title</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
